@@ -1,0 +1,23 @@
+# Package managers
+package-lock.json
+pnpm-lock.yaml
+
+# Build output
+.svelte-kit
+build
+dist
+
+# Legacy files (until migrated)
+js/
+styles.css
+index.html
+static/js/
+static/legacy.html
+workers/
+
+# Test utility files
+test-modules.html
+test-node.mjs
+
+# IDE settings
+.claude/
