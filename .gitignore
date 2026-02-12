@@ -36,3 +36,6 @@ Thumbs.db
 
 # Archive folder
 archive/
+.claude/
+.docs/
+
