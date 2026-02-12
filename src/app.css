@@ -2,47 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Custom Properties for theming */
+/* CSS Custom Properties for theming — tactical/command-center: cold accent, layered surfaces */
 :root {
-	--bg: #0a0a0a;
-	--surface: #141414;
-	--surface-hover: #1a1a1a;
-	--border: #2a2a2a;
-	--border-light: #3a3a3a;
-	--text: #e8e8e8;
-	--text-primary: #e8e8e8;
-	--text-secondary: #888;
-	--text-dim: #888;
-	--text-muted: #777;
-	--accent: #fff;
-	--accent-rgb: 255, 255, 255;
+	--font-display: 'Syne', system-ui, sans-serif;
+	--font-body: 'IBM Plex Mono', 'SF Mono', Monaco, monospace;
+
+	--bg: #0a0c0e;
+	--surface: #12181c;
+	--surface-hover: #1a2228;
+	--border: #2a343c;
+	--border-light: #3a4550;
+	--text: #e8ecf0;
+	--text-primary: #e8ecf0;
+	--text-secondary: #8a96a4;
+	--text-dim: #8a96a4;
+	--text-muted: #6b7886;
+	--accent: #06b6d4;
+	--accent-rgb: 6, 182, 212;
 	--red: #ff4444;
-	--green: #44ff88;
-	--yellow: #ffaa00;
-	--blue: #4488ff;
+	--green: #22c55e;
+	--yellow: #eab308;
+	--blue: #3b82f6;
 	--danger: #ff4444;
-	--success: #44ff88;
-	--warning: #ffaa00;
-	--info: #4488ff;
-	--bg-secondary: #0f0f0f;
-	--bg-hover: rgba(255, 255, 255, 0.04);
-	--panel-hover: rgba(255, 255, 255, 0.04);
+	--success: #22c55e;
+	--warning: #eab308;
+	--info: #3b82f6;
+	--bg-secondary: #0e1114;
+	--bg-hover: rgba(6, 182, 212, 0.06);
+	--panel-hover: rgba(6, 182, 212, 0.06);
+
+	--map-surface: #0f1419;
+	--map-border: #252d35;
 }
 
-/* Light theme (white background) */
+/* Light theme — cool tint to match accent */
 :root[data-theme='light'] {
-	--bg: #f5f5f5;
+	--bg: #f0f4f8;
 	--surface: #ffffff;
-	--surface-hover: #eeeeee;
-	--border: #e0e0e0;
-	--border-light: #d0d0d0;
-	--text: #1a1a1a;
-	--text-primary: #1a1a1a;
-	--text-secondary: #555;
-	--text-dim: #555;
-	--text-muted: #777;
-	--accent: #1a1a1a;
-	--accent-rgb: 26, 26, 26;
+	--surface-hover: #e8eef4;
+	--border: #dce2e8;
+	--border-light: #c8d0d8;
+	--text: #0f172a;
+	--text-primary: #0f172a;
+	--text-secondary: #475569;
+	--text-dim: #475569;
+	--text-muted: #64748b;
+	--accent: #0891b2;
+	--accent-rgb: 8, 145, 178;
 	--red: #c62828;
 	--green: #2e7d32;
 	--yellow: #f9a825;
@@ -51,14 +57,16 @@
 	--success: #2e7d32;
 	--warning: #f9a825;
 	--info: #1565c0;
-	--bg-secondary: #f0f0f0;
-	--bg-hover: rgba(0, 0, 0, 0.04);
-	--panel-hover: rgba(0, 0, 0, 0.04);
+	--bg-secondary: #e8eef4;
+	--bg-hover: rgba(8, 145, 178, 0.06);
+	--panel-hover: rgba(8, 145, 178, 0.06);
+	--map-surface: #f8fafc;
+	--map-border: #e2e8f0;
 }
 
 /* Base styles */
 html {
-	font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
+	font-family: var(--font-body);
 	background-color: var(--bg);
 	color: var(--text);
 }
@@ -66,11 +74,13 @@ html {
 body {
 	margin: 0;
 	min-height: 100vh;
+	background: linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 100%);
+	background-attachment: fixed;
 }
 
 .theme-bg {
 	min-height: 100vh;
-	background-color: var(--bg);
+	background: linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 100%);
 	color: var(--text-primary);
 }
 
@@ -90,7 +100,8 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: var(--text-muted);
+	background: var(--accent);
+	opacity: 0.8;
 }
 
 /* Link styles */
@@ -133,11 +144,28 @@ a:hover {
 	}
 }
 
-/* D3 Map styles - keeping here since they're complex */
+/* Panel enter animation (stagger via delay in +page) */
+.panel-enter {
+	animation: panel-enter 0.4s ease-out backwards;
+}
+
+@keyframes panel-enter {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* D3 Map — distinct surface so map reads as "main stage" */
 .map-container {
 	position: relative;
-	background: var(--surface);
-	border-radius: 4px;
+	background: var(--map-surface);
+	border: 1px solid var(--map-border);
+	border-radius: 6px;
 	overflow: hidden;
 }
 
@@ -149,9 +177,9 @@ a:hover {
 
 .country {
 	fill: var(--border);
-	stroke: var(--surface);
+	stroke: var(--map-surface);
 	stroke-width: 0.5;
-	transition: fill 0.2s;
+	transition: fill 0.2s ease;
 }
 
 .country:hover {

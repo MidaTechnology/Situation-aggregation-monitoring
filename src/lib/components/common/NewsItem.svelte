@@ -64,13 +64,15 @@
 	.news-item {
 		padding: 0.5rem 0;
 		border-bottom: 1px solid var(--border);
-		transition: background 0.15s ease;
+		border-left: 3px solid transparent;
+		transition: background 0.15s ease, border-left-color 0.2s ease;
 	}
 
 	.news-item:hover {
 		background: var(--surface-hover);
 		margin: 0 -0.5rem;
 		padding: 0.5rem;
+		border-left-color: var(--accent);
 	}
 
 	.news-item:last-child {

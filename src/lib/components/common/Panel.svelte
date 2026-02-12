@@ -157,6 +157,7 @@
 
 <style>
 	.panel {
+		position: relative;
 		background: var(--surface);
 		border: 1px solid var(--border);
 		border-radius: 8px;
@@ -164,6 +165,17 @@
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
+	}
+
+	.panel::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.25), transparent);
+		pointer-events: none;
 	}
 
 	.panel.pinned {
@@ -215,10 +227,11 @@
 	}
 
 	.panel-title {
+		font-family: var(--font-display);
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: 0.05em;
+		letter-spacing: 0.06em;
 		color: var(--text-secondary);
 		margin: 0;
 	}

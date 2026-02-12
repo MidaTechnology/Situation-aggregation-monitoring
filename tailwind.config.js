@@ -4,22 +4,24 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				bg: '#0a0a0a',
-				surface: '#141414',
-				'surface-hover': '#1a1a1a',
-				border: '#2a2a2a',
-				'border-light': '#3a3a3a',
-				'text-primary': '#e8e8e8',
-				'text-dim': '#888888',
-				'text-muted': '#666666',
-				accent: '#ffffff',
+				bg: '#0a0c0e',
+				surface: '#12181c',
+				'surface-hover': '#1a2228',
+				border: '#2a343c',
+				'border-light': '#3a4550',
+				'text-primary': '#e8ecf0',
+				'text-dim': '#8a96a4',
+				'text-muted': '#6b7886',
+				accent: '#06b6d4',
 				danger: '#ff4444',
-				success: '#44ff88',
-				warning: '#ffaa00',
-				info: '#4488ff'
+				success: '#22c55e',
+				warning: '#eab308',
+				info: '#3b82f6'
 			},
 			fontFamily: {
-				mono: ['SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'monospace']
+				display: ['Syne', 'system-ui', 'sans-serif'],
+				body: ['IBM Plex Mono', 'SF Mono', 'Monaco', 'monospace'],
+				mono: ['IBM Plex Mono', 'SF Mono', 'Monaco', 'monospace']
 			},
 			fontSize: {
 				'2xs': '0.65rem'

@@ -99,9 +99,10 @@
 	}
 
 	.logo {
-		font-size: 0.9rem;
+		font-family: var(--font-display);
+		font-size: 0.95rem;
 		font-weight: 700;
-		letter-spacing: 0.1em;
+		letter-spacing: 0.08em;
 		color: var(--text-primary);
 		margin: 0;
 		display: flex;
